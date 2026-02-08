@@ -43,7 +43,7 @@ triggers:
   breakout_volume_mult: 1.0
 
 notifications:
-  slack_enabled: true
+  slack_enabled: false
   pushover_enabled: true
   email_enabled: true
 
