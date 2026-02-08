@@ -1,0 +1,8 @@
+.env
+.project-stock-notifier202602-07ef15face29.json
+*.json
+.venv/
+.cache/*
+__pycache__/
+.pyc
+.project-stock-notifier*.json

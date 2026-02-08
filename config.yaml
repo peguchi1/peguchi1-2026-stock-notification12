@@ -1,0 +1,113 @@
+app:
+  timezone: "Asia/Tokyo"
+  log_level: "INFO"
+
+data:
+  provider_primary: "twelvedata"
+  provider_fallback: "twelvedata"
+  twelvedata:
+    base_url: "https://api.twelvedata.com/time_series"
+    interval: "1day"
+    outputsize: 300
+  alphavantage:
+    base_url: "https://www.alphavantage.co/query"
+    function: "TIME_SERIES_DAILY_ADJUSTED"
+    outputsize: "full"
+  cache:
+    enabled: true
+    ttl_seconds: 1800
+  retry:
+    max_attempts: 5
+    base_delay_seconds: 2.0
+    max_delay_seconds: 20.0
+  rate_limit:
+    enabled: true
+    min_interval_seconds: 8.0
+
+nfci:
+  csv_url: "https://www.chicagofed.org/~/media/publications/nfci/nfci-data-series/nfci-data-series.csv"
+
+filters:
+  tolerance: 0.005
+  sma50_tolerance: 0.04
+  drawdown_20d_max: 0.15
+  high_52w_max_multiple: 1.05
+
+triggers:
+  pullback_25:
+    enabled: true
+  pullback_50:
+    enabled: true
+  breakout_20d:
+    enabled: true
+  breakout_volume_mult: 1.0
+
+notifications:
+  slack_enabled: true
+  pushover_enabled: true
+  email_enabled: true
+
+market:
+  indices:
+    - "SPY"
+    - "QQQ"
+
+symbols:
+  - AVGO
+  - AMD
+  - MU
+  - MRVL
+  - INTC
+  - TXN
+  - MCHP
+  - NXPI
+  - AMAT
+  - KLAC
+  - LRCX
+  - ONTO
+  - ACLS
+  - ANET
+  - CIEN
+  - CLS
+  - VRT
+  - HPE
+  - WDC
+  - APH
+  - CRWD
+  - NET
+  - CEG
+  - VST
+  - CCJ
+  - UUUU
+  - LEU
+  - CVX
+  - XOM
+  - FCX
+  - MP
+  - ATI
+  - COIN
+  - HOOD
+  - PYPL
+  - ALL
+  - IREN
+  - HD
+  - CMG
+  - CPRT
+  - MRK
+  - PFE
+  - INCY
+  - ABCL
+  - LMT
+  - NOC
+  - ASTS
+  - RKLB
+  - B
+  - WLDN
+  - APP
+  - ZETA
+  - PSTG
+  - NTAP
+  - LUMN
+  - IONQ
+  - QBTS
+  - COHR

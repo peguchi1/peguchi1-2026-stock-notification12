@@ -1,0 +1,11 @@
+rules:
+  - rule_id: FILTER_DD_002
+    name: "S2 breakout drawdown filter (peak N)"
+    description: "Exclude S2 breakout when drawdown from rolling N-day peak exceeds dd_max."
+    strategy_class: "S2_BREAKOUT"
+    params:
+      window_days: 90
+      dd_max: 0.25
+    priority: 50
+    version: "1.0.0"
+    rationale: "Avoid stale 52w highs; use recent peak with look-ahead protection."
