@@ -6,6 +6,7 @@ from dataclasses import asdict
 from typing import Any
 
 import gspread
+from google.oauth2.service_account import Credentials
 
 from .market_regime import RegimeScoreResult
 
@@ -16,10 +17,17 @@ def append_regime_log(
 ) -> None:
     sheet_url = os.getenv("GOOGLE_SHEET_URL")
     cred_file = os.getenv("GOOGLE_SERVICE_ACCOUNT_FILE")
-    if not sheet_url or not cred_file:
+    cred_json = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
+    if not sheet_url or (not cred_file and not cred_json):
         return
 
-    client = gspread.service_account(filename=cred_file)
+    if cred_json:
+        creds_info = json.loads(cred_json)
+        scopes = ["https://www.googleapis.com/auth/spreadsheets"]
+        creds = Credentials.from_service_account_info(creds_info, scopes=scopes)
+        client = gspread.authorize(creds)
+    else:
+        client = gspread.service_account(filename=cred_file)
     worksheet = client.open_by_url(sheet_url).sheet1
 
     header = [
